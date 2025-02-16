@@ -1,0 +1,10 @@
+version: 2
+authtoken: 2t4amn1p7KbVkNfozgdE9SCsNoo_5kTJKQSbHryu1WMbcTS4a
+tunnels:
+  frontend:
+    addr: 8000
+    proto: http
+
+  agent:
+    addr: 8013
+    proto: http
