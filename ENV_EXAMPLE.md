@@ -27,4 +27,9 @@ VIDEO_STREAMS_DIR=./video_streams
 # Model Configuration
 GEMINI_MODEL=gemini-2.0-flash
 GROQ_MODEL=llama-3.3-70b-versatile
+
+# Ngrok Configuration (optional - for exposing servers publicly)
+NGROK_AUTH_TOKEN=your_ngrok_auth_token_here
 ```
+
+**Note:** If using ngrok, also copy `config/ngrok.yml.example` to `config/ngrok.yml` and add your ngrok auth token there.

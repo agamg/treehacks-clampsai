@@ -1,5 +1,5 @@
 version: 2
-authtoken: 2t4amn1p7KbVkNfozgdE9SCsNoo_5kTJKQSbHryu1WMbcTS4a
+authtoken: YOUR_NGROK_AUTH_TOKEN_HERE
 tunnels:
   frontend:
     addr: 8000

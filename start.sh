@@ -18,12 +18,12 @@ fi
 source .env
 
 # Start ngrok first and wait for it to establish tunnels
-if [ -f ngrok.yml ]; then
-    create_terminal "ngrok start --all --config ./ngrok.yml | tee ngrok_output.log"
+if [ -f config/ngrok.yml ] && [ ! -z "$NGROK_AUTH_TOKEN" ]; then
+    create_terminal "ngrok start --all --config ./config/ngrok.yml | tee logs/ngrok_output.log"
     sleep 5
     # Try to capture ngrok URL if available
-    if [ -f ngrok_output.log ]; then
-        NGROK_URL=$(grep -i "url" ngrok_output.log | grep ":8000" | awk '{print $8}' | head -1)
+    if [ -f logs/ngrok_output.log ]; then
+        NGROK_URL=$(grep -i "url" logs/ngrok_output.log | grep ":8000" | awk '{print $8}' | head -1)
         if [ ! -z "$NGROK_URL" ]; then
             echo "Detected ngrok URL: $NGROK_URL"
             # Update OUTBOUND_URL in .env if ngrok is running

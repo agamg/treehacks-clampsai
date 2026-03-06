@@ -1,0 +1,49 @@
+# Environment variables
+.env
+.env.local
+
+# Ngrok config (contains auth token)
+config/ngrok.yml
+
+# Logs
+logs/
+*.log
+ngrok_output.log
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+backend/venv/
+*.egg-info/
+dist/
+build/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Videos
+videos/
+video_streams/
+*.mp4
+*.webm
+*.avi
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
