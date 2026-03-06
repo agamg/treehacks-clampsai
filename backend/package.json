@@ -1,0 +1,20 @@
+{
+  "name": "clamps-backend",
+  "version": "1.0.0",
+  "description": "Backend services for ClampsAI",
+  "type": "module",
+  "main": "api/outbound_server.js",
+  "scripts": {
+    "start:outbound": "node api/outbound_server.js",
+    "start:video": "python api/video_server.py",
+    "start:chat": "python api/chat_server.py"
+  },
+  "dependencies": {
+    "@fastify/formbody": "^8.0.2",
+    "@fastify/websocket": "^11.0.2",
+    "dotenv": "^16.4.7",
+    "fastify": "^5.2.1",
+    "twilio": "^5.4.4",
+    "ws": "^8.18.0"
+  }
+}

@@ -1,0 +1,16 @@
+# Core dependencies
+fastapi==0.115.3
+uvicorn==0.32.0
+flask==3.0.0
+flask-cors==4.0.0
+python-dotenv==1.0.0
+pydantic==2.9.2
+requests==2.31.0
+
+# AI/ML dependencies
+google-generativeai==0.8.3
+groq==0.18.0
+
+# Optional: for video streaming (if needed)
+# flask-socketio==5.5.1
+# opencv-python==4.11.0.86
