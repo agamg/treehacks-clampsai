@@ -46,6 +46,11 @@ if [ -f "backend/package.json" ]; then
     create_terminal "cd backend && npm install"
 fi
 
+# Install Node.js dependencies for frontend
+if [ -f "clamps/package.json" ]; then
+    create_terminal "cd clamps && npm install"
+fi
+
 # Start backend services
 echo "Starting backend services..."
 

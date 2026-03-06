@@ -172,7 +172,7 @@ flowchart LR
 - **Twilio**: Handles the actual phone call infrastructure
 
 ### Frontend
-- **HTML Interface**: Simple web interface for monitoring feeds and viewing incidents
+- **Next.js Application** (`clamps/`): React-based web interface for monitoring feeds and viewing incidents
 - Records 5-second video chunks continuously
 - Displays threat detection results in real-time
 
@@ -183,9 +183,13 @@ flowchart LR
    ./start.sh
    ```
 
-2. **Open the frontend:**
-   - Open `frontend/html/main.html` in your browser
-   - Click "Monitor Security Feeds" to start recording
+2. **Start the frontend:**
+   ```bash
+   cd clamps
+   npm install
+   npm run dev
+   ```
+   Then open `http://localhost:3000` in your browser.
 
 3. **The system will:**
    - Record 5-second video chunks from your camera
