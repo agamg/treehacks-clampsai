@@ -34,33 +34,33 @@ if [ -f config/ngrok.yml ] && [ ! -z "$NGROK_AUTH_TOKEN" ]; then
 fi
 
 # Create videos directory if it doesn't exist
-mkdir -p backend/videos
+mkdir -p server/videos
 
 # Install Python requirements
-if [ -d "backend" ]; then
-    create_terminal "cd backend && python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt"
+if [ -d "server" ]; then
+    create_terminal "cd server && python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt"
 fi
 
 # Install Node.js dependencies for outbound server
-if [ -f "backend/package.json" ]; then
-    create_terminal "cd backend && npm install"
+if [ -f "server/package.json" ]; then
+    create_terminal "cd server && npm install"
 fi
 
 # Install Node.js dependencies for frontend
-if [ -f "clamps/package.json" ]; then
-    create_terminal "cd clamps && npm install"
+if [ -f "client/package.json" ]; then
+    create_terminal "cd client && npm install"
 fi
 
-# Start backend services
-echo "Starting backend services..."
+# Start server services
+echo "Starting server services..."
 
 # Start video server
-create_terminal "cd backend && source venv/bin/activate && source ../.env && python api/video_server.py"
+create_terminal "cd server && source venv/bin/activate && source ../.env && python api/video_server.py"
 
 # Start chat server  
-create_terminal "cd backend && source venv/bin/activate && source ../.env && python api/chat_server.py"
+create_terminal "cd server && source venv/bin/activate && source ../.env && python api/chat_server.py"
 
 # Start outbound call server
-create_terminal "cd backend && source ../.env && node api/outbound_server.js"
+create_terminal "cd server && source ../.env && node api/outbound_server.js"
 
 echo "All services started. Check the terminal windows for status."

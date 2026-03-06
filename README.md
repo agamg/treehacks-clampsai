@@ -12,13 +12,13 @@ ClampsAI continuously monitors video feeds from security cameras, analyzing each
 
 ```mermaid
 graph TB
-    subgraph Frontend["Frontend"]
+    subgraph Client["Client"]
         UI[Web Application]
         Camera[Multi-camera Video Feeds]
         Recorder[MediaRecorder API]
     end
     
-    subgraph Backend["Backend Services"]
+    subgraph Server["Server Services"]
         subgraph VideoServer["Video Server (Flask :5002)"]
             VS_API[API Endpoints]
             VS_Service[VideoService]
@@ -59,16 +59,16 @@ graph TB
 ```mermaid
 sequenceDiagram
     participant User
-    participant Frontend
+    participant Client
     participant VideoServer
     participant VideoService
     participant Gemini
     
-    User->>Frontend: Click "Monitor Security Feeds"
-    Frontend->>Frontend: Start MediaRecorder
+    User->>Client: Click "Monitor Security Feeds"
+    Client->>Client: Start MediaRecorder
     loop Every 5 seconds
-        Frontend->>Frontend: Record video chunk
-        Frontend->>VideoServer: POST /save-video (FormData)
+        Client->>Client: Record video chunk
+        Client->>VideoServer: POST /save-video (FormData)
         VideoServer->>VideoServer: Save to ./videos/
         VideoServer->>VideoService: process_video(file_path)
         VideoService->>Gemini: Upload video file
@@ -81,8 +81,8 @@ sequenceDiagram
             VideoService->>VideoService: make_outbound_call(description)
         end
         VideoService-->>VideoServer: gemini_response
-        VideoServer-->>Frontend: JSON response
-        Frontend->>Frontend: Display incident card
+        VideoServer-->>Client: JSON response
+        Client->>Client: Display incident card
     end
 ```
 
@@ -122,13 +122,13 @@ Users can query the system about what it has observed:
 ```mermaid
 sequenceDiagram
     participant User
-    participant Frontend
+    participant Client
     participant ChatServer
     participant VideoServer
     participant Gemini
     
-    User->>Frontend: "What did you see in the last video?"
-    Frontend->>ChatServer: POST /chat/completions
+    User->>Client: "What did you see in the last video?"
+    Client->>ChatServer: POST /chat/completions
     ChatServer->>ChatServer: Extract user message
     ChatServer->>VideoServer: POST /query
     VideoServer->>VideoServer: Get latest video from cache
@@ -137,9 +137,9 @@ sequenceDiagram
     VideoServer-->>ChatServer: {response: "..."}
     ChatServer->>ChatServer: Format as chat completion
     loop Stream words
-        ChatServer-->>Frontend: SSE chunk (word-by-word)
+        ChatServer-->>Client: SSE chunk (word-by-word)
     end
-    Frontend->>User: Display streaming response
+    Client->>User: Display streaming response
 ```
 
 ## Data Flow
@@ -161,7 +161,7 @@ flowchart LR
 
 ## Key Components
 
-### Backend Services
+### Server Services
 - **Video Server** (Flask): Receives video uploads, processes them with Gemini AI, and detects threats
 - **Chat Server** (FastAPI): Handles natural language queries about video content
 - **Outbound Server** (Node.js): Manages emergency calls via Twilio and ElevenLabs
@@ -171,21 +171,21 @@ flowchart LR
 - **ElevenLabs Conversational AI**: Voice agent that speaks to emergency responders
 - **Twilio**: Handles the actual phone call infrastructure
 
-### Frontend
-- **Next.js Application** (`clamps/`): React-based web interface for monitoring feeds and viewing incidents
+### Client
+- **Next.js Application** (`client/`): React-based web interface for monitoring feeds and viewing incidents
 - Records 5-second video chunks continuously
 - Displays threat detection results in real-time
 
 ## How to Use
 
-1. **Start the backend services:**
+1. **Start the server services:**
    ```bash
    ./start.sh
    ```
 
-2. **Start the frontend:**
+2. **Start the client:**
    ```bash
-   cd clamps
+   cd client
    npm install
    npm run dev
    ```

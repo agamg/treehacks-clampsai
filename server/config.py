@@ -1,4 +1,4 @@
-"""Configuration management for the backend."""
+"""Configuration management for the server."""
 import os
 from dotenv import load_dotenv
 

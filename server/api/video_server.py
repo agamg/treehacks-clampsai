@@ -6,8 +6,8 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 # Add parent directory to path for imports
-backend_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, backend_dir)
+server_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, server_dir)
 from config import Config
 from services.video_service import VideoService
 from services.call_service import CallService

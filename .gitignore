@@ -19,7 +19,7 @@ __pycache__/
 venv/
 env/
 ENV/
-backend/venv/
+server/venv/
 *.egg-info/
 dist/
 build/

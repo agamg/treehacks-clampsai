@@ -1,7 +1,7 @@
 {
-  "name": "clamps-backend",
+  "name": "clamps-server",
   "version": "1.0.0",
-  "description": "Backend services for ClampsAI",
+  "description": "Server services for ClampsAI",
   "type": "module",
   "main": "api/outbound_server.js",
   "scripts": {

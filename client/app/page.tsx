@@ -330,7 +330,7 @@ export default function Home() {
                   Incidents
                 </CardTitle>
                 <CardDescription>
-                  {incidents.length} total analysis{incidents.length !== 1 ? "es" : ""}
+                  {incidents.length} total {incidents.length === 1 ? "analysis" : "analyses"}
                 </CardDescription>
               </CardHeader>
               <CardContent>
