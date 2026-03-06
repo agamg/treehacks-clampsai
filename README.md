@@ -179,8 +179,31 @@ flowchart LR
 ## How to Use
 
 1. **Start the server services:**
+
+   **Video Server (Flask):**
    ```bash
-   ./start.sh
+   cd server
+   python3 -m venv venv
+   source venv/bin/activate
+   pip install -r requirements.txt
+   source ../.env
+   python api/video_server.py
+   ```
+
+   **Chat Server (FastAPI):**
+   ```bash
+   cd server
+   source venv/bin/activate
+   source ../.env
+   python api/chat_server.py
+   ```
+
+   **Outbound Server (Node.js):**
+   ```bash
+   cd server
+   npm install
+   source ../.env
+   node api/outbound_server.js
    ```
 
 2. **Start the client:**
